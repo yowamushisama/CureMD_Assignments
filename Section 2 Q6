@@ -1,4 +1,4 @@
-//Section 2 Q1
+//Section 2 Q6
 Console.WriteLine("Please enter a number: ");
 int num = int.Parse(Console.ReadLine());
 int sum = 0;
