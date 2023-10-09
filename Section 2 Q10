@@ -1,0 +1,13 @@
+//Section 2 Q10
+Console.WriteLine("Enter the number of terms: ");
+int terms = int.Parse(Console.ReadLine());//Ask the user for the number of terms
+int term1 = 0;  int term2 = 1;// Declare the first terms of fibonacci 
+Console.Write("Fibonacci Sequence upto " + terms + " terms is: " + term1+", "+term2);
+for(int i = 2; i < terms; i++) // Initiate the loop for the next n-2 terms
+{
+    int term3 = term1 + term2; // Fibonacci Sequence Formula
+    Console.Write(", " + term3);
+    term1 = term2; //Store the 2nd term value in 1st term value;
+    term2 = term3; //Store the 3rd term value in 2nd term value;
+}
+
