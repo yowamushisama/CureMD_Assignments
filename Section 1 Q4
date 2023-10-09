@@ -1,0 +1,5 @@
+//Section 1 Q4
+Console.WriteLine("Please enter a number: ");
+int num = int.Parse(Console.ReadLine());
+int square = num * num;
+Console.WriteLine("The square of "+num+" is "+square);
