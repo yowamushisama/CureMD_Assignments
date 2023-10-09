@@ -1,0 +1,8 @@
+//Section 2 Q7 Multiplication table
+Console.WriteLine("Enter the number for the table: ");
+int tableNum = int.Parse(Console.ReadLine());//convert string to integer
+for(int i = 1; i <= 12; i++)
+{
+    int product = tableNum * i;// multiply each i by tableNum
+   Console.WriteLine(tableNum+" x "+i+ " = "+product);//print table
+}
