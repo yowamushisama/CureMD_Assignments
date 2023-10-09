@@ -1,0 +1,21 @@
+//Section 2 Q8 Prime Numbers
+Console.WriteLine("Enter the number: ");
+int num = int.Parse(Console.ReadLine());
+bool isitPrime = true;  // Initially,we consider the num as prime
+Console.WriteLine("Prime numbers upto "+num+" are: ");
+for(int i = 2; i <= num; i++)
+{
+    for(int j = 2; j <= num/2; j++) //we are using nested for loop
+    {
+        if(i != j && i % j == 0)//checking if the number is not same and the remainder is 0
+        {
+            isitPrime = false;
+            break;//breaking out of the second loop since the number is o
+        }
+    }
+    if (isitPrime)//Since its prime,we are print the number
+    {
+        Console.WriteLine(i);
+    }
+    isitPrime = true;
+}
