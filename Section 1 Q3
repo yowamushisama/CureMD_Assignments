@@ -1,0 +1,4 @@
+//Section 1 Q3
+int value1 = 1;
+int value2 = 3;
+Console.WriteLine(value1+value2);
