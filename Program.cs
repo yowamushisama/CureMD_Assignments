@@ -1,2 +1,4 @@
-//Section 1 Q1
-Console.WriteLine("Hello, World!");
+﻿//Section 1 Q2
+Console.WriteLine("What is your name: ");
+string name = Console.ReadLine();
+Console.WriteLine($"Hello,{name}");
