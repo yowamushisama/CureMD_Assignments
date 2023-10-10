@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Section3_Q13
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] unsortedArray = { 5, 3, 7, 2, 11 };
+            int max = unsortedArray[0];
+            int min = unsortedArray[0];
+            for(int i = 0; i < unsortedArray.Length; i++) { 
+                if(unsortedArray[i] > max) 
+                {
+                    max = unsortedArray[i];
+                }
+                if(unsortedArray[i] < min) {
+
+                }
+        }
+    }
+}
