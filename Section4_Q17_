@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Section4_Q17
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int temp = 0;
+            int[] unsortedarr = new int[] { 2, 5, 6, 1 };
+            for (int i = 0; i<unsortedarr.Length - 1; i++)
+            {
+                for (int j = i + 1; j < unsortedarr.Length; j++)
+                {
+                    if (unsortedarr[i] > unsortedarr[j])
+                    {
+                        temp = unsortedarr[i];
+                        unsortedarr[i] = unsortedarr[j];
+                        unsortedarr[j] = temp;
+                    }
+                }
+            }
+            Console.WriteLine("The array in ascending order: ");
+            foreach(int values in unsortedarr)
+            {
+                Console.Write(values+" ");
+            }
+
+
+            Console.ReadKey();
+        }
+    }
+}
