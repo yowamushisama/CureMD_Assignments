@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Section4_Q16
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter a string: ");
+            string inputString = Console.ReadLine();
+            char[] chars = inputString.ToCharArray();// converts the string into array of characters
+            string reverse = "";
+            for(int i = chars.Length-1; i >= 0 ; i--)
+            {
+                reverse +=chars[i];// adding from last to first
+                //implicitly converted from char to string during concatenation
+            }
+            Console.WriteLine("The reverse of string "+inputString+" is "+reverse);
+            Console.ReadKey();
+        }
+    }
+}
