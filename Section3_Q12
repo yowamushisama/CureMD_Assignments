@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Section3_Q12
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        { Console.WriteLine("Please enter a string: ");
+            string reverse = "";
+            string palindrome = Console.ReadLine(); 
+            for(int i = palindrome.Length-1; i >= 0; i--)
+            {
+                reverse +=palindrome[i].ToString();//Converting it from char to string
+            }
+            if(palindrome == reverse)
+            {
+                Console.WriteLine("The string " + palindrome + " is palindrome");
+            } else
+            {
+                Console.WriteLine("The string "+palindrome+" is not palindrome");
+            }
+            Console.ReadKey();
+        }
+    }
+}
