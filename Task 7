@@ -1,0 +1,21 @@
+-- Task7 
+--Q1
+SELECT FirstName, LastName
+FROM Students
+left join  Courses on Students.CourseID = Courses.CourseID
+WHERE Courses.CourseID is NULL
+
+--Q2
+SELECT
+    Courses.CourseID,
+    Courses.CourseName,
+    COUNT(Students.StudentID) AS EnrollmentCount
+FROM
+    Courses
+LEFT JOIN
+    Students ON Courses.CourseID = Students.CourseID
+GROUP BY
+    Courses.CourseID,
+    Courses.CourseName
+ORDER BY
+    COUNT(Students.StudentID) DESC
