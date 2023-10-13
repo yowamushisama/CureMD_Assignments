@@ -27,3 +27,18 @@ UPDATE Students
 Set  Age = @pa_newAge
 Where StudentID = @pa_StudentID
 END;
+--Q3
+CREATE PROCEDURE DeleteStudent (
+    @p_StudentID INT
+)
+AS
+BEGIN
+    DELETE FROM Students
+    WHERE StudentID = @p_StudentID;
+END;
+
+--Q4
+Create Procedure ListStudents
+As 
+Select * from Students
+Exec ListStudents
