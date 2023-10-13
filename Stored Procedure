@@ -1,0 +1,29 @@
+--Task 7
+--Q1
+Create Procedure AddStudent (
+    @pa_FirstName varchar(50),
+    @pa_LastName varchar(50),
+    @pa_Age int,
+    @pa_CourseID int
+)
+As
+BEGIN
+    INSERT INTO Students (FirstName, LastName, Age, CourseID)
+    VALUES (@pa_FirstName, @pa_LastName, @pa_Age, @pa_CourseID);
+END;
+
+EXECUTE AddStudent 
+@p_FirstName = 'Zain', @p_LastName = 'Butt', @p_Age = 24, 
+@p_CourseID = 1;
+
+--Q2
+Create Procedure UpdateStudent(
+     @pa_StudentID int,
+	 @pa_newAge int
+)
+As
+BEGIN
+UPDATE Students
+Set  Age = @pa_newAge
+Where StudentID = @pa_StudentID
+END;
