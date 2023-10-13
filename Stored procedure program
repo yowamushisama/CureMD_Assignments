@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+namespace ConsoleApp7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            
+
+            string connectionString = "Server=ARHAM\\SQLEXPRESS;Database=5055_DB;Trusted_Connection=True;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // 1. Execute Stored Procedure to Get All Employees
+                using (SqlCommand command = new SqlCommand("ListStudents", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"StudentID: {reader["StudentID"]},FirstName: {reader["FirstName"]},LastName: {reader["LastName"]}, Age: {reader["Age"]}, CourseID: {reader["CourseID"]}");
+                    }
+                    connection.Close();
+                }
+
+                // 2. Execute Stored Procedure to Add an Employee
+                using (SqlCommand command = new SqlCommand("AddStudent", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@FirstName", "Hamza");
+                    command.Parameters.AddWithValue("@LastName", "khan");
+                    command.Parameters.AddWithValue("@Age", 30);
+                    command.Parameters.AddWithValue("@CourseID", 1);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                
+
+                
+            }
+        }
+    }
+}
