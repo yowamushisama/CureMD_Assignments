@@ -1,0 +1,238 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using ConsoleApp3.Models;
+using System;
+using System.Web.Http;
+
+namespace ConsoleApp3.Controllers
+{
+    //[Route("api/[controller]")]
+    public class StudentController : ApiController
+    {
+        private readonly string _connectionString;
+        public StudentController()
+        {
+            _connectionString = "Server=cmdlhrdb01;Database=5055_DB;Trusted_Connection=True;";
+        }
+
+        [System.Web.Mvc.HttpGet]
+        [Microsoft.AspNetCore.Mvc.Route("GetAllStudents")]
+        public List<Students> GetStudents()
+        {
+            List<Students> students = new List<Students>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("GetStudents", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Students student = new Students
+                        {
+                            StudentID = (int)reader["StudentID"],
+                            FirstName = reader["FirstName"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            Age = reader["Age"] == DBNull.Value ? 0 : (int)reader["Age"],
+                            CourseID = reader["CourseID"] == DBNull.Value ? 0 : (int)reader["CourseID"]
+
+                        };
+
+                        students.Add(student);
+                    }
+                    connection.Close();
+                }
+            }
+            return students;
+
+        }
+
+        //[HttpGet("{id}")]
+        //[System.Web.Mvc.HttpGet("{id}")]
+
+        //[System.Web.Mvc.HttpGet]
+        //[Microsoft.AspNetCore.Mvc.Route("GetStudentbyId/{id}")]
+
+        //public List<Students> GetStudentsId()
+        //{
+        //    Students student = new Students();
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("GetStudentById", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@StudentID", id);
+        //            connection.Open();
+        //            SqlDataReader reader = command.ExecuteReader();
+        //            if (reader.Read())
+        //            {
+        //                student.StudentID = (int)reader["StudentID"];
+        //                student.FirstName = reader["FirstName"].ToString();
+        //                student.LastName = reader["LastName"].ToString();
+        //                student.Age = reader["Age"] == DBNull.Value ? 0 : (int)reader["Age"];
+        //                student.CourseID = reader["CourseID"] == DBNull.Value ? 0 : (int)reader["CourseID"];
+        //            }
+        //            connection.Close();
+        //        }
+        //    }
+        //    return Ok(student);
+        //}
+
+        //[Microsoft.AspNetCore.Mvc.Route("GetAllStudentById")]
+
+        //public IActionResult GetStudentById(int id)
+        //{
+        //    Students student = new Students();
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("GetStudentById", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@StudentID", id);
+        //            connection.Open();
+        //            SqlDataReader reader = command.ExecuteReader();
+        //            if (reader.Read())
+        //            {
+        //                student.StudentID = (int)reader["StudentID"];
+        //                student.FirstName = reader["FirstName"].ToString();
+        //                student.LastName = reader["LastName"].ToString();
+        //                student.Age = (int)reader["Age"];
+        //                student.CourseID = (int)reader["CourseID"];
+        //            }
+        //            connection.Close();
+        //        }
+        //    }
+        //    return Ok(student);
+
+        //}
+
+        //[HttpPost]et
+        //public IActionResult AddStudent(Students student)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("AddStudent", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@FirstName", student.FirstName);
+        //            command.Parameters.AddWithValue("@LastName", student.LastName);
+        //            command.Parameters.AddWithValue("@Age", student.Age);
+        //            command.Parameters.AddWithValue("@CourseID", student.CourseID);
+        //            connection.Open();
+        //            command.ExecuteNonQuery();
+        //        }
+        //        connection.Close();
+        //    }
+        //    return Ok();
+
+        //}
+
+        //[HttpPut("{id}")]
+        //public IActionResult UpdateStudent(int id, Students student)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("UpdateStudent", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@StudentID", id);
+        //            command.Parameters.AddWithValue("@FirstName", student.FirstName);
+        //            command.Parameters.AddWithValue("@LastName", student.LastName);
+        //            command.Parameters.AddWithValue("@Age", student.Age);
+        //            command.Parameters.AddWithValue("@CourseID", student.CourseID);
+        //            connection.Open();
+        //            command.ExecuteNonQuery();
+        //        }
+        //    }
+        //    return Ok(student);
+        //}
+
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteStudent(int id)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("DeleteStudent", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@StudentID", id);
+        //            connection.Open();
+        //            command.ExecuteNonQuery();
+        //        }
+        //        connection.Close();
+        //    }
+        //    return Ok();
+        //}
+        ////TASK 9 ADVANCED API CALLS
+        //// Q1
+        //[HttpGet("olderthan20")]
+        //public IActionResult GetStudentsOlderThan20()
+        //{
+        //    List<Students> studentsOlderThan20 = new List<Students>();
+
+        //    // Assuming Age is an integer field in your Students model
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("GetStudentsOlderThan20", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            connection.Open();
+        //            SqlDataReader reader = command.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                Students student = new Students
+        //                {
+        //                    StudentID = (int)reader["StudentID"],
+        //                    FirstName = reader["FirstName"].ToString(),
+        //                    LastName = reader["LastName"].ToString(),
+        //                    Age = reader["Age"] == DBNull.Value ? 0 : (int)reader["Age"],
+        //                    CourseID = reader["CourseID"] == DBNull.Value ? 0 : (int)reader["CourseID"]
+
+        //                };
+
+        //                studentsOlderThan20.Add(student);
+        //            }
+        //            connection.Close();
+        //        }
+        //    }
+
+        //    return Ok(studentsOlderThan20);
+        //}
+        //[HttpGet("byCourse/{courseId}")]
+        //public IActionResult GetStudentsByCourse(int courseId)
+        //{
+        //    List<Students> studentsByCourse = new List<Students>();
+
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand("GetStudentsByCourse", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@CourseID", courseId);
+        //            connection.Open();
+        //            SqlDataReader reader = command.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                Students student = new Students
+        //                {
+        //                    StudentID = (int)reader["StudentID"],
+        //                    FirstName = reader["FirstName"].ToString(),
+        //                    LastName = reader["LastName"].ToString(),
+        //                    Age = (int)reader["Age"],
+        //                    CourseID = (int)reader["CourseID"]
+        //                };
+
+        //                studentsByCourse.Add(student);
+        //            }
+        //            connection.Close();
+        //        }
+        //    }
+
+        //    return Ok(studentsByCourse);
+        //}
+    }
+}
