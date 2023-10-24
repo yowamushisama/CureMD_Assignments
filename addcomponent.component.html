@@ -1,0 +1,57 @@
+<div class="container mt-5 custom-font">
+    <h2 class="text-center" id="title">Student Management</h2>
+
+    <!-- Student Form -->
+    <div class="card mt-4 custom-card">
+        <div class="card-header custom-header">Add Student</div>
+        <div class="card-body">
+            <form id="studentForm">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="studName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Age:</label>
+                    <input type="number" id="studAge" class="form-control">
+                </div>
+          
+
+                <div class="form-group">
+                    <label>Course:</label>
+                    <input type="text" id="studDept" class="form-control">
+                </div>
+                <button type="button" class="btn btn-success custom-button" onclick="addstud()">Add Student</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Courses Form -->
+    <h2 class="text-center course" id="title">Course Management</h2>
+    <div class="card mt-4 custom-card">
+        
+        <div class="card-header custom-header">Add Course</div>
+        <div class="card-body">
+            <form id="courseForm">
+                <div class="form-group">
+                    <label>Course Name:</label>
+                    <input type="text" id="courseName" class="form-control">
+                    <label>Course ID:</label>
+                    <input type="text" id="courseName" class="form-control">
+                </div>
+                <button type="button" class="btn btn-success custom-button" onclick="addCourse()">Add Course</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Student List -->
+    <div class="card mt-4">
+        <div class="card-header custom-add">Student List</div>
+        <ul id="studentList" class="list-group list-group-flush"></ul>
+    </div>
+
+    <!-- Courses List -->
+    <div class="card mt-4">
+        <div class="card-header custom-add">Courses List</div>
+        <ul id="courseList" class="list-group list-group-flush"></ul>
+    </div>
+</div>

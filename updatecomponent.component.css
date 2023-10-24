@@ -1,0 +1,37 @@
+/*.heading{
+    text-align: center;
+    font-weight: 300;
+}*/
+
+#title{
+    color: #333;
+}
+.custom-font {
+    font-family: 'Roboto', sans-serif; 
+  }
+.custom-header{
+    background-color: #e0f7fa;
+    font-weight: 500;
+}
+.custom-add{
+    background-color: #9ac9d2;
+}
+.custom-button{
+    background-color: #34495e;
+    transition: background-color 0.3s ease;
+}
+.custom-button:hover{
+    background-color: #3d5269;
+}
+.custom-card{
+    border-width:1.3px;
+    border-color: #444;
+}
+.course{
+    padding-top: 20px;
+}
+.background-image{
+    background-image: url('students.jpg');
+    background-size: cover;
+    background-position: center;
+}
